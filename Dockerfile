@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu
 
 #install httpd (web server)
 RUN apt update
