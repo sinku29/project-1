@@ -1,2 +1,2 @@
-FROM ubuntu   or FROM ubuntu:<vertion>
+FROM ubuntu
 RUN echo "Testing docker" > /tmp/testfile
