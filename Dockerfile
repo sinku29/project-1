@@ -1,14 +1,10 @@
-FROM ubuntu
+FROM nginx:latest
 
+# Copy the configuration file to the container
+COPY nginx.conf /etc/nginx/nginx.conf
 
-RUN apt-get update
-RUN apt install apache2 -y
+# Copy the HTML files to the container
+COPY html/ /usr/share/nginx/html/
 
-
-COPY index.html /var/www/html/index.html
-
+# Expose port 80 to allow incoming HTTP traffic
 EXPOSE 80
-
-
-CMD ["/usr/sbin/apache2","-D","FOREGROUND"]
-
