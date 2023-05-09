@@ -1,8 +1,8 @@
 FROM ubuntu
-FROM httpd:latest
+
 
 RUN apt-get update
-RUN apt instll apache2 -y
+RUN apt install apache2 -y
 
 
 COPY index.html /var/www/html/index.html
