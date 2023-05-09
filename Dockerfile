@@ -1,5 +1,5 @@
 FROM ubuntu
-
+FROM httpd:latest
 
 RUN apt-get update
 RUN apt instll apache2 -y
