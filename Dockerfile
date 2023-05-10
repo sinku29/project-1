@@ -8,7 +8,7 @@ RUN apt-get update
 RUN apt-get install -y apache2 php
 
 # Copy the website files to the container
-COPY index.php /var/www/html/
+COPY index.html /var/www/html/
 
 # Expose port 80
 EXPOSE 80
