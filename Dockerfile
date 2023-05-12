@@ -14,4 +14,4 @@ COPY index.html /var/www/html/
 EXPOSE 80
 
 # Start Apache in the foreground
-CMD ["apache2ctl", "-D", "FOREGROUND"]
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
