@@ -1,17 +1,11 @@
-# Use a base image
-FROM ubuntu:latest
-
-# Update the package repository
-RUN apt update
-
-# Install Apache and PHP
-RUN apt install -y apache2 
-
-# Copy the website files to the container
-COPY index.html /var/www/html/
-
-# Expose port 80
-EXPOSE 80
-
-# Start Apache in the foreground
-CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+FROM ubuntu
+RUN apt update && apt upgrade -y
+RUN apt install apache2
+RUN apt install unzip -y
+ADD https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip  /var/www/html/
+WORKDIR /var/www/html
+RUN unzip photogenic.zip
+RUN cp -rf photogenic/*  .
+RUN rm -rf photogenic photogenic.zip
+CMD ["apachectl", "-D", "FOREGROUND"]
+EXPOSE 80
