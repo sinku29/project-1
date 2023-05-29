@@ -8,4 +8,4 @@ RUN unzip photogenic.zip
 RUN cp -rf photogenic/*  .
 RUN rm -rf photogenic photogenic.zip
 CMD ["apachectl", "-D", "FOREGROUND"]
-EXPOSE 80
+EXPOSE 80
