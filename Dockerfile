@@ -1,11 +1,11 @@
-FROM ubuntu
-RUN apt update && apt upgrade -y
-RUN apt install apache2 -y
-RUN apt install unzip -y
-ADD https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip  /var/www/html/
-WORKDIR /var/www/html/
-RUN unzip photogenic.zip
-RUN cp -rf photogenic/*  .
-RUN rm -rf photogenic photogenic.zip
-CMD ["apachectl", "-D", "FOREGROUND"]
+FROM centos:latest
+RUN yum install -y httpd \
+zip \
+unzip
+ADD https://www.free-css.com/assets/files/free-css-templates/download/page258/loxury.zip /var/www/html/
+WORKDIR	 /var/www/html
+RUN unzip loxury.zip
+RUN cp -rvp loxury/* .
+RUN rm -rf loxury loxury.zip
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 EXPOSE 80
