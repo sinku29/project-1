@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM centos:7
 RUN yum update -y && yum install -y httpd
 RUN yum install -y zip 
 RUN yum install -y unzip
