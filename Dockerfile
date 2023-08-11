@@ -4,6 +4,5 @@ RUN yum install -y zip
 RUN yum install -y unzip
 COPY loxury /var/www/html/
 WORKDIR	 /var/www/html
-RUN cp -rvp loxury/* .
 CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
 EXPOSE 80
