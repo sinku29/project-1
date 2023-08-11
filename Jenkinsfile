@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    environment {
-        SONAR_TOKEN = credentials('sonartoken')
-    }
+    
 
     stages {
         stage("code from github") {
@@ -20,12 +18,12 @@ pipeline {
         }
     
         
-        stage('Code Analysis') {
+        stage('SonarQube Analysis') {
             steps {
                 script {
-                    def scannerHome = tool 'sonar-server'
-                    def sonarQubeEnv = withSonarQubeEnv('sonartoken') {
-                        sh "${scannerHome}/opt/sonar-scanner"
+                    withSonarQubeEnv('sonartoken') {
+                        def scannerHome = tool name: 'sonar-server', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=https://github.com/sinku29/project-1.git -Dsonar.sources=./"
                     }
                 }
             }
