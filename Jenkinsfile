@@ -21,9 +21,13 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 script {
+                    // Retrieve SonarScanner tool
+                    def scannerHome = tool 'sonar-server'
+                    
+                    // Set up SonarQube environment
                     withSonarQubeEnv('sonartoken') {
-                        def scannerHome = tool name: 'sonar-server', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
-                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=https://github.com/sinku29/project-1.git -Dsonar.sources=./"
+                        // Run SonarScanner analysis
+                        sh "${scannerHome}/opt/sonar-scanner"
                     }
                 }
             }
