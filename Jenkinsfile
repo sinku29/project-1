@@ -25,7 +25,7 @@ pipeline {
                 script {
                     def scannerHome = tool 'sonar-server'
                     def sonarQubeEnv = withSonarQubeEnv('sonartoken') {
-                        sh "${scannerHome}/bin/sonar-scanner"
+                        sh "${scannerHome}/opt/sonar-scanner"
                     }
                 }
             }
