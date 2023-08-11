@@ -1,6 +1,8 @@
 pipeline {
     agent any
-    def scannerHome = tool 'sonar-server';
+    environment {
+        SONAR_TOKEN = credentials('sonartoken')
+    }
 
     stages {
         stage("code from github") {
@@ -18,10 +20,14 @@ pipeline {
         }
     
         
-        stage('SonarQube Analysis') {
-              
-               withSonarQubeEnv(credentialsId: 'sonartoken') {
-               sh "${scannerHome}/opt/sonar-scanner"
+        stage('Code Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'sonar-server'
+                    def sonarQubeEnv = withSonarQubeEnv('sonartoken') {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                }
             }
         }
     }
