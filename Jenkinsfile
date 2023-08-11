@@ -27,7 +27,7 @@ pipeline {
                     // Set up SonarQube environment
                     withSonarQubeEnv('sonartoken') {
                         // Run SonarScanner analysis
-                        sh "${scannerHome}/opt/sonar-scanner"
+                        sh "${scannerHome}/bin/sonar-scanner"
                     }
                 }
             }
