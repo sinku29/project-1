@@ -15,5 +15,13 @@ pipeline {
                 sh 'docker image tag $JOB_NAME:v1.$BUILD_ID sinku29/$JOB_NAME:latest'
             }
         }
-    } 
-}    
+    
+        
+        stage('SonarQube Analysis') {
+              def scannerHome = tool 'sonar-server';
+               withSonarQubeEnv(credentialsId: 'sonartoken') {
+               sh "${scannerHome}/bin/sonar-scanner"
+            }
+        }
+    }
+}
